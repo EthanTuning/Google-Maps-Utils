@@ -4,7 +4,8 @@ $(document).ready(init);
 function init() {
 
     $("#search-btn").on("click", googleSearch);
-
+    $("#renderBtn").on("click", renderPDF);
+    google.maps.event.addDomListener(window, 'load', initialize);
 }
 
 var map;
@@ -18,7 +19,7 @@ function initMap() {
     directionsDisplay = new google.maps.DirectionsRenderer();
 
     var lat = $("#lat-input").val();
-    var lat = $("#long-input").val();
+    var long = $("#long-input").val();
     
     var ewu = new google.maps.LatLng(47.492803830404036, -117.58786034393313);
     
@@ -32,10 +33,6 @@ function initMap() {
 
 
 function dropPin() {
-
-    if (endMarker) {
-        endMarker.setMap(null);
-    }
 
     endMarker = new google.maps.Marker({
         position: map.getCenter(),
@@ -72,9 +69,13 @@ function googleSearch() {
         if (status == 'OK') {
             map.setCenter(results[0].geometry.location);
         } else {
-            alert('Geocode was not successful for the following reason: ' + status);
+            alert('Uh Oh: ' + status);
         }
     });
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+function renderPDF() {
+
+    $('#static-map').attr('src',''); //create a static google map
+
+}

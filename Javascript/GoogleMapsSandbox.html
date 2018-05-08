@@ -13,20 +13,54 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="input-container">
+    <div id="input-container" class="container">
         <form id="input-form">
             <input id="search-input" placeholder="EWU"/> <input type="button" id="search-btn" value="Search"/>
-            <br/>
-            <br/>
-            <label>Lat: <input type="text" id="lat-input"/></label>
-            <br/>
-            <label>Long: <input type="text" id="long-input"/></label>
-            <br/>
-            <input type="button" value="Drop Pin" onclick="dropPin()"/> 
+            <div class="row">
+                <div class="input-section-wrapper col-sm">
+                    <label>Lat: <input type="text" id="lat-input1"/></label>
+                    <br/>
+                    <label>Long: <input type="text" id="long-input1"/></label>
+                    <br/>
+                    <input type="button" value="Drop Pin" onclick="dropPin()"/>
+                </div>
+                <div class="input-section-wrapper col-sm">
+                    <label>Lat: <input type="text" id="lat-input2"/></label>
+                    <br/>
+                    <label>Long: <input type="text" id="long-input2"/></label>
+                    <br/>
+                    <input type="button" value="Drop Pin" onclick="dropPin()"/>
+                </div>
+                <div class="input-section-wrapper col-sm">
+                    <label>Lat: <input type="text" id="lat-input3"/></label>
+                    <br/>
+                    <label>Long: <input type="text" id="long-input3"/></label>
+                    <br/>
+                    <input type="button" value="Drop Pin" onclick="dropPin()"/>
+                </div>
+                <div class="input-section-wrapper col-sm">
+                    <label>Lat: <input type="text" id="lat-input4"/></label>
+                    <br/>
+                    <label>Long: <input type="text" id="long-input4"/></label>
+                    <br/>
+                    <input type="button" value="Drop Pin" onclick="dropPin()"/>
+                </div>
+                <div class="input-section-wrapper col-sm">
+                    <label>Lat: <input type="text" id="lat-input5"/></label>
+                    <br/>
+                    <label>Long: <input type="text" id="long-input5"/></label>
+                    <br/>
+                    <input type="button" value="Drop Pin" onclick="dropPin()"/>   
+                </div>
+            </div>  
         </form>
     </div>
     <div id="map-container">
         <div id="map"></div>
+    </div>
+    <img id="static-map" hidden/>
+    <div class="row">
+        <input id="renderBtn" type="button" value="Render PDF Document"/>
     </div>
 </body>
 </html>

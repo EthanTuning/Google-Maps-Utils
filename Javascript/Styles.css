@@ -1,3 +1,9 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 #map {
     height: 100%;
     width: 100%;
@@ -18,8 +24,10 @@
     margin: auto;
 }
 
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+.input-section-wrapper {
+    display: inline;
+}
+
+#renderBtn {
+    margin: 0 auto;
 }
