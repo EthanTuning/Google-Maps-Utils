@@ -9,6 +9,8 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRgLyDHklNsktxukKsrDxaTScx3eFg01A&callback=initMap"
     async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="GoogleMapsUtils.js"></script>
     <title>Document</title>
 </head>
@@ -22,35 +24,35 @@
                     <br/>
                     <label>Long: <input type="text" id="long-input1"/></label>
                     <br/>
-                    <input type="button" value="Drop Pin" onclick="dropPin()"/>
+                    <input type="button" value="Drop Pin" onclick="dropPin(endMarker1, 1)"/>
                 </div>
                 <div class="input-section-wrapper col-sm">
                     <label>Lat: <input type="text" id="lat-input2"/></label>
                     <br/>
                     <label>Long: <input type="text" id="long-input2"/></label>
                     <br/>
-                    <input type="button" value="Drop Pin" onclick="dropPin()"/>
+                    <input type="button" value="Drop Pin" onclick="dropPin(endMarker2, 2)"/>
                 </div>
                 <div class="input-section-wrapper col-sm">
                     <label>Lat: <input type="text" id="lat-input3"/></label>
                     <br/>
                     <label>Long: <input type="text" id="long-input3"/></label>
                     <br/>
-                    <input type="button" value="Drop Pin" onclick="dropPin()"/>
+                    <input type="button" value="Drop Pin" onclick="dropPin(endMarker3, 3)"/>
                 </div>
                 <div class="input-section-wrapper col-sm">
                     <label>Lat: <input type="text" id="lat-input4"/></label>
                     <br/>
                     <label>Long: <input type="text" id="long-input4"/></label>
                     <br/>
-                    <input type="button" value="Drop Pin" onclick="dropPin()"/>
+                    <input type="button" value="Drop Pin" onclick="dropPin(endMarker4, 4)"/>
                 </div>
                 <div class="input-section-wrapper col-sm">
                     <label>Lat: <input type="text" id="lat-input5"/></label>
                     <br/>
                     <label>Long: <input type="text" id="long-input5"/></label>
                     <br/>
-                    <input type="button" value="Drop Pin" onclick="dropPin()"/>   
+                    <input type="button" value="Drop Pin" onclick="dropPin(endMarker5, 5)"/>   
                 </div>
             </div>  
         </form>

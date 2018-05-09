@@ -5,11 +5,15 @@ function init() {
 
     $("#search-btn").on("click", googleSearch);
     $("#renderBtn").on("click", renderPDF);
-    google.maps.event.addDomListener(window, 'load', initialize);
+    //google.maps.event.addDomListener(window, 'load', initialize);
 }
 
 var map;
-var endMarker;
+var endMarker1;
+var endMarker2;
+var endMarker3;
+var endMarker4;
+var endMarker5;
 var geocoder;
 
 
@@ -32,29 +36,51 @@ function initMap() {
 }
 
 
-function dropPin() {
+function dropPin(endMarker, num) {
 
     endMarker = new google.maps.Marker({
         position: map.getCenter(),
         map: map,
         draggable: true
     });
-    copyMarkerPositionToInput();
+    copyMarkerPositionToInput(endMarker, num);
 
     google.maps.event.addListener(endMarker, 'dragend', function () {
-        copyMarkerPositionToInput();
+        copyMarkerPositionToInput(endMarker, num);
     });
 }
 
 
 
-function copyMarkerPositionToInput() {
+function copyMarkerPositionToInput(endMarker, num) {
 
     var latitude = endMarker.getPosition().lat();
     var longitude = endMarker.getPosition().lng();
 
-    $("#long-input").val(longitude);
-    $("#lat-input").val(latitude);
+    if(num == 1) {
+        $("#long-input1").val(longitude);
+        $("#lat-input1").val(latitude);
+    }
+
+    if(num == 2) {
+        $("#long-input2").val(longitude);
+        $("#lat-input2").val(latitude);
+    }
+
+    if(num == 3) {
+        $("#long-input3").val(longitude);
+        $("#lat-input3").val(latitude);
+    }
+
+    if(num == 4) {
+        $("#long-input4").val(longitude);
+        $("#lat-input4").val(latitude);
+    }
+
+    if(num == 5) {
+        $("#long-input5").val(longitude);
+        $("#lat-input5").val(latitude);
+    }
 }
 
 
@@ -76,6 +102,20 @@ function googleSearch() {
 
 function renderPDF() {
 
-    $('#static-map').attr('src',''); //create a static google map
+    $('#static-map').attr('src','http://maps.google.com/maps/api/staticmap?size=640x375'+
+                                '&amp;markers=label:1|'+ endMarker1.getPosition().lat() +','+ endMarker1.getPosition().lng() +''+
+                                '&amp;markers=label:2|'+ endMarker2.getPosition().lat() +','+ endMarker2.getPosition().lng() +''+
+                                '&amp;markers=label:3|'+ endMarker3.getPosition().lat() +','+ endMarker3.getPosition().lng() +''+
+                                '&amp;markers=label:4|'+ endMarker4.getPosition().lat() +','+ endMarker4.getPosition().lng() +''+
+                                '&amp;markers=label:5|'+ endMarker5.getPosition().lat() +','+ endMarker5.getPosition().lng() +''); //create a static google map
 
+    html2canvas($('#static-map'), {
+        useCORS: true,
+        onrendered: function(canvas) {
+            var img =canvas.toDataURL("image/jpeg,1.0");
+            var pdf = new jsPDF();
+            pdf.addImage(img, 'JPEG', 15, 40, 180, 180);
+            pdf.save('map.pdf')
+        }
+    });
 }
