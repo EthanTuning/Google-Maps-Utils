@@ -5,7 +5,6 @@ function init() {
 
     $("#search-btn").on("click", googleSearch);
     $("#renderBtn").on("click", renderPDF);
-    //google.maps.event.addDomListener(window, 'load', initialize);
 }
 
 var map;
@@ -32,7 +31,7 @@ function initMap() {
         center: ewu
     };
 
-    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
 }
 
 
@@ -102,20 +101,39 @@ function googleSearch() {
 
 function renderPDF() {
 
-    $('#static-map').attr('src','http://maps.google.com/maps/api/staticmap?size=640x375'+
-                                '&amp;markers=label:1|'+ endMarker1.getPosition().lat() +','+ endMarker1.getPosition().lng() +''+
-                                '&amp;markers=label:2|'+ endMarker2.getPosition().lat() +','+ endMarker2.getPosition().lng() +''+
-                                '&amp;markers=label:3|'+ endMarker3.getPosition().lat() +','+ endMarker3.getPosition().lng() +''+
-                                '&amp;markers=label:4|'+ endMarker4.getPosition().lat() +','+ endMarker4.getPosition().lng() +''+
-                                '&amp;markers=label:5|'+ endMarker5.getPosition().lat() +','+ endMarker5.getPosition().lng() +''); //create a static google map
+    //getStaticMap();
 
-    html2canvas($('#static-map'), {
+    var element = $('#map');
+    var pdfOptions = {
+        orientation: "portrait",
+        unit: "mm",    
+        format: "legal"
+    };
+
+    var doc = new jsPDF(pdfOptions);
+    var pageWidth = doc.internal.pageSize.width-20;
+    var width = pageWidth;
+
+    html2canvas(element, {
         useCORS: true,
         onrendered: function(canvas) {
-            var img =canvas.toDataURL("image/jpeg,1.0");
-            var pdf = new jsPDF();
-            pdf.addImage(img, 'JPEG', 15, 40, 180, 180);
-            pdf.save('map.pdf')
+            var imgWidth = element.width();
+            var imgHeight = element.height();
+            var height = (pageWidth * imgHeight)/imgWidth
+            var imgData = canvas.toDataURL('image/png;base64');
+            doc.addImage(imgData, 'PNG', 10, 30 , width, height);
+            doc.save('map.pdf');
         }
     });
+}
+
+function getStaticMap() {
+
+    $('#static-map').attr('src','http://maps.google.com/maps/api/staticmap?size=640x375'+
+    '&amp;markers=label:1|'+ $("#lat-input1").val() +','+ $("#long-input1").val() +
+    '&amp;markers=label:2|'+ $("#lat-input2").val() +','+ $("#long-input2").val() +
+    '&amp;markers=label:3|'+ $("#lat-input3").val() +','+ $("#long-input3").val() +
+    '&amp;markers=label:4|'+ $("#lat-input4").val() +','+ $("#long-input4").val() +
+    '&amp;markers=label:5|'+ $("#lat-input5").val() +','+ $("#long-input5").val()); //create a static google map
+
 }
