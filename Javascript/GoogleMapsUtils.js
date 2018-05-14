@@ -35,7 +35,7 @@ function initMap() {
 }
 
 
-function dropPin(endMarker, num) {
+function dropMarker(endMarker, num) {
 
     endMarker = new google.maps.Marker({
         position: map.getCenter(),
@@ -101,8 +101,6 @@ function googleSearch() {
 
 function renderPDF() {
 
-    //getStaticMap();
-
     var element = $('#map');
     var pdfOptions = {
         orientation: "portrait",
@@ -128,6 +126,8 @@ function renderPDF() {
 }
 
 function getStaticMap() {
+
+    //this is ot needed to render a pdf, but could be handy in some cases.
 
     $('#static-map').attr('src','http://maps.google.com/maps/api/staticmap?size=640x375'+
     '&amp;markers=label:1|'+ $("#lat-input1").val() +','+ $("#long-input1").val() +
